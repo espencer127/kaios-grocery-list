@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { TodoService } from './shared/components/todo/todo.service';
+import { ItemService } from './shared/components/item/item.service';
 import { NavigationService } from './core/services/navigation.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { NavigationService } from './core/services/navigation.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  constructor(private todoService: TodoService, private navigationService: NavigationService) { }
+  constructor(private itemService: ItemService, private navigationService: NavigationService) { }
 
   ngOnInit() {
     this.navigationService.init();
@@ -16,12 +16,15 @@ export class AppComponent implements OnInit {
 
   @HostListener('document:keydown.enter')
   onEnter() {
-    const [currentItem, currentIndex] = this.navigationService.getCurrentItem();
-    if (currentItem.nodeName === 'INPUT' && 'value' in currentItem && currentItem.value) {
-      this.todoService.add({ name: currentItem.value, completed: false });
+    const [currentItem, currentIndex] = this.navigationService.getNameElement();
+    const [currentQty, qtyIndex] = this.navigationService.getQtyElement();
+    if (currentItem.nodeName === 'INPUT' && 'value' in currentItem && currentItem.value &&
+          currentQty.nodeName === 'INPUT' && 'value' in currentQty && currentQty.value) {
+      this.itemService.create(currentItem.value, Number(currentQty.value), false);
       currentItem.value = '';
+      currentQty.value = '';
     } else {
-      this.todoService.toggleComplete(currentIndex - 1);
+      this.itemService.toggleComplete(currentIndex - 1);
     }
   }
 
@@ -39,7 +42,7 @@ export class AppComponent implements OnInit {
   onSoftRight() {
     const [currentItem, currentIndex] = this.navigationService.getCurrentItem();
     if (currentItem.nodeName === 'SPAN') {
-      this.todoService.remove(currentIndex - 1);
+      this.itemService.remove(currentIndex - 1);
       this.navigationService.Up();
     }
   }

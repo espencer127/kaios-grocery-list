@@ -1,0 +1,9 @@
+<div class="items">
+  <span
+    nav-selectable
+    *ngFor="let item of items"
+    [class.purchased]="item.purchased"
+  >
+    {{ item.name }} - {{item.desc}} - {{item.qty}} - {{item.price}}
+  </span>
+</div>

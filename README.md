@@ -1,6 +1,6 @@
 # Sample Angular app for KaiOS
 
-Simple example of a to-do list, for more information see [KaiOS Developer Portal](https://developer.kaiostech.com/getting-started/build-your-first-app/sample-code#angular)
+Simple example of a to-do list, for more information see [KaiOS Developer Portal](https://developer.kaiostech.com/docs/sfp-3.0/getting-started/build-your-first-package-app/sample-code#angular)
 
 ![](./docs/to-do-on-input.png)
 ![](./docs/to-do.png)

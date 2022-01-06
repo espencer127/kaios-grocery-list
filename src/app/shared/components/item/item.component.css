@@ -1,10 +1,10 @@
-.todos {
+.items {
   display: flex;
   flex-direction: column;
   padding: 0 10px;
 }
 
-.todos span {
+.items span {
   display: flex;
   align-items: center;
   width: 100%;
@@ -16,11 +16,11 @@
   background-color: #F5F5F6;
 }
 
-.todos span[nav-selected="true"] {
+.items span[nav-selected="true"] {
   background-image: linear-gradient(255deg, #9B27AF, #9B27AF);
   color: #FFF;
 }
 
-.todos .completed {
+.items .completed {
   text-decoration: line-through;
 }

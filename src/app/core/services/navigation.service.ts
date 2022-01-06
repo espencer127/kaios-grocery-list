@@ -21,6 +21,27 @@ export class NavigationService {
     return document.querySelector('[nav-selected=true]');
   }
 
+  public getNameString(): String {
+    //return document.querySelector("input[name='name']")[0].value;
+    return (<HTMLInputElement>document.getElementById("inputName")).value;
+  }
+
+  public getNameElement(): [HTMLInputElement | Element, number] {
+    const item = (<HTMLInputElement>document.getElementById("inputName"));
+    const index = this.getTheIndexOfTheSelectedElement(item);
+    return [item, index];
+  }
+  
+  public getQtyString(): number {
+    return Number((<HTMLInputElement>document.getElementById("inputQty")).value);
+  }
+
+  public getQtyElement(): [HTMLInputElement | Element, number] {
+    const item = (<HTMLInputElement>document.getElementById("inputQty"));
+    const index = this.getTheIndexOfTheSelectedElement(item);
+    return [item, index];
+  }
+
   private getTheIndexOfTheSelectedElement(current?: Element): number {
     const currentElement = current || this.getCurrentElement();
     return currentElement ? parseInt(currentElement.getAttribute('nav-index'), 10) : 0;
